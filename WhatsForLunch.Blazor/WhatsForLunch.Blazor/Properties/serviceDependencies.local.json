@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/WhatsForLunchBlazorVault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri"
+    },
+    "storage1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/germanywestcentral/connectors/whatsForLunchAzureStorage_57F7E802EA",
+      "secretStore": "AzureKeyVault",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/whatsforlunchstorage",
+      "type": "storage.azure",
+      "connectionId": "whatsForLunchAzureStorage",
+      "dynamicId": null
+    }
+  }
+}
