@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33711.374
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsForLunch.Blazor", "WhatsForLunch.Blazor\WhatsForLunch.Blazor.csproj", "{9D5E9D0D-AB82-4F89-8D5D-8429EB6872DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsForLunch.Core", "..\WhatsForLunch.Core\WhatsForLunch.Core.csproj", "{27A41EAA-90CC-4ED0-875F-CC8388F588EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D5E9D0D-AB82-4F89-8D5D-8429EB6872DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5E9D0D-AB82-4F89-8D5D-8429EB6872DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5E9D0D-AB82-4F89-8D5D-8429EB6872DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5E9D0D-AB82-4F89-8D5D-8429EB6872DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A41EAA-90CC-4ED0-875F-CC8388F588EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A41EAA-90CC-4ED0-875F-CC8388F588EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A41EAA-90CC-4ED0-875F-CC8388F588EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A41EAA-90CC-4ED0-875F-CC8388F588EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35D879A6-183F-46A1-A421-724CEEEC7AEF}
+	EndGlobalSection
+EndGlobal
