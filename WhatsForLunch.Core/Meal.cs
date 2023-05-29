@@ -2,7 +2,7 @@
 
 public record Meal(string Name)
 {
-    public ImmutableList<Ingredient> Ingredients { get; } = ImmutableList<Ingredient>.Empty;
+    public IList<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
-    public ImmutableList<Tag> Tags { get; } = ImmutableList<Tag>.Empty;
+    public IList<Tag> Tags { get; set; } = new List<Tag>();
 }

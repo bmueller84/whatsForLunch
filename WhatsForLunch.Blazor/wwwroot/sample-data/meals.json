@@ -1,0 +1,25 @@
+﻿[
+    {
+        "Name": "Test meal",
+        "Ingredients": [
+            { "Name": "Kartoffeln" }
+        ],
+        "Tags": [
+            { "Name": "Vegan" },
+            { "Name": "Aufwändig" }
+        ]
+    },
+    {
+        "Name": "Test meal 2",
+        "Tags": [
+            { "Name": "Kindertauglich" }
+        ]
+    },
+    {
+        "Name": "Test meal 3",
+        "Ingredients": [
+            { "Name": "Nudeln" },
+            { "Name": "Käse" }
+        ]
+    }
+]
