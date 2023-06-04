@@ -1,12 +1,11 @@
-﻿@page "/fetchdata"
+﻿@page "/allmeals"
 @using WhatsForLunch.Core;
 @inject HttpClient Http
+@inject IDatabaseProvider Db
 
-<PageTitle>Weather forecast</PageTitle>
+<PageTitle>Alle Gerichte</PageTitle>
 
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
+<h1>Alle Gerichte</h1>
 
 @if (meals == null)
 {
@@ -40,6 +39,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        meals = await Http.GetFromJsonAsync<Meal[]>("sample-data/meals.json") ?? Array.Empty<Meal>();
+        // meals = await Http.GetFromJsonAsync<Meal[]>("sample-data/meals.json") ?? Array.Empty<Meal>();
+        meals = Db.GetAllMeals().ToBlockingEnumerable().ToArray();
     }
 }

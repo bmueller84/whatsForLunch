@@ -1,0 +1,60 @@
+﻿@page "/addmeal"
+@using WhatsForLunch.Core;
+@inject HttpClient Http
+@inject IDatabaseProvider Db
+
+<PageTitle>Neues Gericht</PageTitle>
+
+<h1>Neues Gericht</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" @bind="@mealName" />
+            </td>
+        </tr>
+        <tr>
+            <td>Zutaten</td>
+            <td>
+                <input type="text" @bind="@ingredients" />
+            </td>
+        </tr>
+        <tr>
+            <td>Tags</td>
+            <td>
+                <input type="text" @bind="@tags" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button @onclick="Save">Speichern</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    private string mealName = string.Empty;
+    private string ingredients = string.Empty;
+    private string tags = string.Empty;
+
+    private async Task Save()
+    {
+        var ingredientList = ingredients
+            .Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            .Select(s => new Ingredient(s))
+            .ToList();
+        var tagList = tags
+            .Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            .Select(t => new Tag(t))
+            .ToList();
+
+        await Db.AddMeal(new Meal(mealName)
+        {
+            Ingredients = ingredientList,
+            Tags = tagList
+        });
+    }
+}

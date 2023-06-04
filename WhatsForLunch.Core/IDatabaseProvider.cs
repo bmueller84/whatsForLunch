@@ -2,5 +2,7 @@
 
 public interface IDatabaseProvider
 {
-    public IEnumerable<Meal> GetAllMeals();
+    public IAsyncEnumerable<Meal> GetAllMeals();
+
+    public Task<bool> AddMeal(Meal newMeal);
 }
