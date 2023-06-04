@@ -40,6 +40,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         // meals = await Http.GetFromJsonAsync<Meal[]>("sample-data/meals.json") ?? Array.Empty<Meal>();
-        meals = Db.GetAllMeals().ToBlockingEnumerable().ToArray();
+        meals = Db.GetMeals().ToBlockingEnumerable().ToArray();
     }
 }
