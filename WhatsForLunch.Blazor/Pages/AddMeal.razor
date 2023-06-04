@@ -1,4 +1,5 @@
 ﻿@page "/addmeal"
+@using System.ComponentModel.DataAnnotations;
 @using WhatsForLunch.Core;
 @inject HttpClient Http
 @inject IDatabaseProvider Db
@@ -7,7 +8,35 @@
 
 <h1>Neues Gericht</h1>
 
-<table class="table">
+<EditForm Model="@meal" OnValidSubmit="@Save">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Name:
+            <InputText @bind-Value="meal.Name" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Zutaten (mit Kommas separaiert):
+            <InputText @bind-Value="meal.Ingredients" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Tags (mit Kommas separaiert):
+            <InputText @bind-Value="meal.Tags" />
+        </label>
+    </p>
+
+    <button type="submit">Speichern</button>
+</EditForm>
+
+@* <table class="table">
     <tbody>
         <tr>
             <td>Name</td>
@@ -33,25 +62,34 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> *@
 
 @code {
-    private string mealName = string.Empty;
-    private string ingredients = string.Empty;
-    private string tags = string.Empty;
+    private class MealBuilder
+    {
+        [Required]
+        [StringLength(20, ErrorMessage = "Name is too long.")]
+        public string? Name { get; set; }
+
+        public string? Ingredients { get; set; }
+
+        public string? Tags { get; set; }
+    }
+
+    private MealBuilder meal = new();
 
     private async Task Save()
     {
-        var ingredientList = ingredients
+        var ingredientList = (meal.Ingredients ?? string.Empty)
             .Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
             .Select(s => new Ingredient(s))
             .ToList();
-        var tagList = tags
+        var tagList = (meal.Tags ?? string.Empty)
             .Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
             .Select(t => new Tag(t))
             .ToList();
 
-        await Db.AddMeal(new Meal(mealName)
+        await Db.AddMeal(new Meal(meal.Name!, DateTime.UtcNow)
         {
             Ingredients = ingredientList,
             Tags = tagList

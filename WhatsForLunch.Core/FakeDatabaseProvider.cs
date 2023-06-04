@@ -18,16 +18,16 @@ public class FakeDatabaseProvider : IDatabaseProvider
 
         var defaultMeals = new[]
         {
-            new Meal("Empty meal"),
-            new Meal("Meal with ingredient")
+            new Meal("Empty meal", DateTime.UtcNow),
+            new Meal("Meal with ingredient", DateTime.UtcNow)
             {
                 Ingredients = new List<Ingredient>() { ingredients["Kartoffel"] }
             },
-            new Meal("Meal with tag")
+            new Meal("Meal with tag", DateTime.UtcNow)
             {
                 Tags = new List<Tag>() { tags["Kindertauglich"] }
             },
-            new Meal("Meal with ingredients and tags")
+            new Meal("Meal with ingredients and tags", DateTime.UtcNow)
             {
                 Ingredients = new List<Ingredient>() { ingredients["Nudel"], ingredients["Butter"] },
                 Tags = new List<Tag>() { tags["Aufwändig"], tags["Vegan"] }
@@ -71,7 +71,7 @@ public class FakeDatabaseProvider : IDatabaseProvider
         await Task.WhenAll(ingredientTasks);
         await Task.WhenAll(tagTasks);
 
-        var consolidatedMeal = new Meal(newMeal.Name)
+        var consolidatedMeal = new Meal(newMeal.Name, newMeal.Added)
         {
             Ingredients = ingredientTasks.Select(i => i.Result).ToList(),
             Tags = tagTasks.Select(t => t.Result).ToList(),

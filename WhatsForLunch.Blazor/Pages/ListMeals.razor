@@ -1,5 +1,6 @@
 ﻿@page "/allmeals"
 @using WhatsForLunch.Core;
+@using BlazorTable;
 @inject HttpClient Http
 @inject IDatabaseProvider Db
 
@@ -13,25 +14,18 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Gericht</th>
-                <th>Zutaten</th>
-                <th>Tags</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var meal in meals ?? Enumerable.Empty<Meal>())
-            {
-                <tr>
-                    <td>@meal.Name</td>
-                    <td>@string.Join(", ", meal.Ingredients.Select(i => i.Name))</td>
-                    <td>@string.Join(", ", meal.Tags.Select(t => t.Name))</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <Table TableItem="Meal" Items="meals">
+        <Column TableItem="Meal" Title="Gericht" Field="@(x => x.Name)" Sortable="true" Filterable="true" DefaultSortColumn="true" />
+        <Column TableItem="Meal" Title="Zutaten" Field="@(x => x.Ingredients)" Filterable="true">
+            <Template>@string.Join(", ", context.Ingredients.Select(i => i.Name))</Template>
+         </Column>
+        <Column TableItem="Meal" Title="Tags" Field="@(x => x.Tags)" Filterable="true">
+            <Template>@string.Join(", ", context.Tags.Select(t => t.Name))</Template>
+        </Column>
+        <Column TableItem="Meal" Title="Hinzugefügt am" Field="@(x => x.Added)" Filterable="true">
+            <Template>@context.Added.ToShortDateString()</Template>
+        </Column>
+    </Table>
 }
 
 @code {
